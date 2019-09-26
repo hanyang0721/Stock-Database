@@ -11,9 +11,9 @@ view GetMonthlyPerformanceDetails\
 view GetMonthlyPerformanceSum\
 \
 報價\
-驗證資料須用群益超級贏家裡的技術分析資料, 因元大K線使用的是前歸法, OHLC與volume都不會一致. 可自行改寫\
+驗證資料須用群益超級贏家裡的技術分析資料, 因元大K線使用的是後歸法, OHLC與volume都不會一致. 可自行改寫\
 \
-dbo.sp_GetTickData(使用後歸法)\
+dbo.sp_GetTickData(使用前歸法)\
 dbo.sp_GetTickInHour(尚未驗證正確性)\
 dbo.sp_GetTicksDaily 回傳日K OHLC\
 dbo.sp_GetTicksIn5Min 回傳五分K OHLC\
