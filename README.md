@@ -1,7 +1,10 @@
 ## Stock-Database
 <img src="https://d1.awsstatic.com/logos/partners/microsoft/logo-SQLServer-vert.c0cb0df0cd1d6c8469d792abb5929239da36611a.png" width="233" height="190">
 
-
+```diff 
+- Stock Demo 備份檔因儲存在Git LFS必須進入檔案頁面下載, 直接download zip內容是空的 
+```
+[https://github.com/hanyang0721/Stock-Database/blob/master/StockDemo.bak](https://github.com/hanyang0721/Stock-Database/blob/master/StockDemo.bak)
 ### 功能提供
 報價, 下單, 回測所用的資料庫. 大部分程式run的query都已SP的方式儲存在資料庫\
 \
