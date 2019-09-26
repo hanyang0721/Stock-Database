@@ -4,25 +4,25 @@
 
 ### 功能提供
 報價, 下單, 回測所用的資料庫. 大部分程式run的query都已SP的方式儲存在資料庫\
-
-⋅⋅* 回測\
+\
+回測\
 dbo.sp_GetMDD 回傳策略最大DD\
 view GetMonthlyPerformanceDetails\
 view GetMonthlyPerformanceSum\
-
-⋅⋅* 報價\
+\
+報價\
 驗證資料須用群益超級贏家裡的技術分析資料, 因元大K線使用的是前歸法, OHLC與volume都不會一致. 可自行改寫\
-
+\
 dbo.sp_GetTickData(使用後歸法)\
 dbo.sp_GetTickInHour(尚未驗證正確性)\
 dbo.sp_GetTicksDaily 回傳日K OHLC\
 dbo.sp_GetTicksIn5Min 回傳五分K OHLC\
-
-⋅⋅* 其他\
+\
+其他\
 dbo.sp_RestartSKOrder 重啟下單程式\
 dbo.sp_GetNotifyOrders Line reply下單通知\
 dbo.dbo.sp_ChkLatest_KLine 每日檢查是否日K, 分K都是最新的\
-dbo.dbo.ChkTick 確保Tick都是最新的\
+dbo.dbo.ChkTick 確保Tick都是最新的
 
 ### 設定步驟
 避免Tick報價程式在盤中出錯, 設定agent job每隔一段時間執行dbo.ChkTick, 確保資料一直都有進來
