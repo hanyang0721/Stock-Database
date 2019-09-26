@@ -1,3 +1,2 @@
 *.bak filter=lfs diff=lfs merge=lfs -text
-* linguist-vendored
-*.sql linguist-vendored=false
+*.sql linguist-language=TSQL
