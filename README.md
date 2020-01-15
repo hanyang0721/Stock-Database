@@ -5,6 +5,9 @@
 - Stock Demo 備份檔因儲存在Git LFS必須進入檔案頁面下載, 直接download zip內容是空的 
 ```
 [https://github.com/hanyang0721/Stock-Database/blob/master/StockDemo.bak](https://github.com/hanyang0721/Stock-Database/blob/master/StockDemo.bak)
+
+### 注意Bak可能裡的sp, function, table可能為舊版, 但有提供完整K線資料
+
 ### 功能提供
 報價, 下單, 回測所用的資料庫. 大部分程式run的query都已SP的方式儲存在資料庫\
 \
