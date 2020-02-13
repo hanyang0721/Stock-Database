@@ -30,7 +30,8 @@ dbo.dbo.sp_ChkLatest_KLine 每日檢查是否日K, 分K都是最新的\
 dbo.dbo.ChkTick 確保Tick都是最新的
 
 ### 設定步驟
-避免Tick報價程式在盤中出錯, 設定agent job每隔一段時間執行dbo.ChkTick, 確保資料一直都有進來
+重要!!!
+將agentjob排程還原, 此script會定時將當日tick轉為分K
 
 
 提供兩種模式還原
