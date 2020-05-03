@@ -15,8 +15,8 @@ dbo.sp_GetMDD 回傳策略最大DD\
 view GetMonthlyPerformanceDetails\
 view GetMonthlyPerformanceSum\
 sp sp_GetActualOrderPerformance\
-sp sp_FindPossibleDD 找出盤中最大未平倉dd
-\
+sp sp_FindPossibleDD 找出盤中最大未平倉dd\
+<br>
 **報價**\
 驗證資料須用群益超級贏家裡的技術分析資料, 元大K線使用的是後歸法, 
 OHLC與volume都不會一致. 可自行改寫
@@ -28,9 +28,9 @@ dbo.sp_GetTicksIn5Min 回傳五分K OHLC\
 dbo.sp_RestartSKOrder 重啟下單程式\
 dbo.sp_GetNotifyOrders Line reply下單通知\
 dbo.sp_ChkLatest_KLine 每日開盤檢查是否日K, 分K都是最新的\
-dbo.ChkTick 確保Tick都是最新的
-dbo.sp_GetTXSettlementDay 取得結算日
-sp_ChkQuoteSourceConsistency 用於盤後比較kline的資料與tick轉換後的差異
+dbo.ChkTick 確保Tick都是最新的\
+dbo.sp_GetTXSettlementDay 取得結算日\
+sp_ChkQuoteSourceConsistency 用於盤後比較kline的資料與tick轉換後的差異\
 sp_TicksConversion 盤後tick轉分k, 日k
 
 ### 設定步驟
