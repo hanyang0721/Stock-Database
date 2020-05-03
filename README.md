@@ -14,12 +14,12 @@
 dbo.sp_GetMDD 回傳策略最大DD\
 view GetMonthlyPerformanceDetails\
 view GetMonthlyPerformanceSum\
+procedure sp_GetActualOrderPerformance
 \
 報價\
-驗證資料須用群益超級贏家裡的技術分析資料, 因元大K線使用的是後歸法, OHLC與volume都不會一致. 可自行改寫\
+驗證資料須用群益超級贏家裡的技術分析資料, 元大K線使用的是後歸法, OHLC與volume都不會一致. 可自行改寫\
 \
 dbo.sp_GetTickData(使用前歸法)\
-dbo.sp_GetTickInHour(尚未驗證正確性)\
 dbo.sp_GetTicksDaily 回傳日K OHLC\
 dbo.sp_GetTicksIn5Min 回傳五分K OHLC\
 \
@@ -30,13 +30,12 @@ dbo.dbo.sp_ChkLatest_KLine 每日檢查是否日K, 分K都是最新的\
 dbo.dbo.ChkTick 確保Tick都是最新的
 
 ### 設定步驟
-重要!!!
 將agentjob排程還原, 此script會定時將當日tick轉為分K
 
 
 提供兩種模式還原
 
-1. **bak檔還原**\
+1. ~~**bak檔還原**\ 
    必須是SQL Server 2016版本, 目前使用版本13.0.4001.0. Bak檔已包含分K, 日K從2000年的歷史資料. 可直接執行
 
 2. **Script檔還原**\
