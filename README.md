@@ -7,6 +7,10 @@
 ~~### 注意Bak可能裡的sp, function, table可能為舊版, 但有提供完整K線資料~~
 已移除BAK檔
 
+:moneybag::moneybag::moneybag::moneybag::moneybag::moneybag::moneybag::moneybag::moneybag::moneybag::moneybag:<br>
+202005新增台指期k線歷史資料, 含1998~20200430的分k與日k資料<br>
+:moneybag::moneybag::moneybag::moneybag::moneybag::moneybag::moneybag::moneybag::moneybag::moneybag::moneybag:
+
 ### 功能提供
 報價, 下單, 回測所用的資料庫. 大部分程式run的query都已SP的方式儲存在資料庫\
 \
