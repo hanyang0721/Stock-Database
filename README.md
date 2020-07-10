@@ -1,12 +1,6 @@
 ## Stock-Database
 <img src="https://d1.awsstatic.com/logos/partners/microsoft/logo-SQLServer-vert.c0cb0df0cd1d6c8469d792abb5929239da36611a.png" width="233" height="190">
 
-```diff 
-- Stock Demo 備份檔因儲存在Git LFS必須進入檔案頁面下載, 直接download zip內容是空的 
-```
-~~### 注意Bak可能裡的sp, function, table可能為舊版, 但有提供完整K線資料~~
-已移除BAK檔
-
 :moneybag::moneybag::moneybag::moneybag::moneybag::moneybag::moneybag::moneybag::moneybag::moneybag::moneybag:<br>
 202005新增台指期k線歷史資料, 含1998~20200430的分k與日k資料<br>
 :moneybag::moneybag::moneybag::moneybag::moneybag::moneybag::moneybag::moneybag::moneybag::moneybag::moneybag:
@@ -16,20 +10,21 @@
 \
 **回測**\
 dbo.sp_GetMDD 回傳策略最大DD\
-view GetMonthlyPerformanceDetails\
-view GetMonthlyPerformanceSum\
-sp sp_GetActualOrderPerformance\
+sp sp_GetActualOrderPerformance 回測用, 將order table內的order轉換成損益分析表\
 sp sp_FindPossibleDD 找出盤中最大未平倉dd\
+sp_GetMDD 返回最大MDD\
 <br>
 **報價**\
 驗證資料須用群益超級贏家裡的技術分析資料, 元大K線使用的是後歸法, 
 OHLC與volume都不會一致. 可自行改寫
 dbo.GetTodayTick(使用前歸法)\
 dbo.sp_GetTicksDaily 回傳日K OHLC\
-dbo.sp_GetTicksIn5Min 回傳五分K OHLC\
+dbo.sp_GetTicksIn5Min 回傳5分K OHLC\
+dbo.sp_GetTicksIn15Min 回傳15分K OHLC\
+dbo.sp_GetTicksIn30Min 回傳30分K OHLC\
+dbo.sp_GetTicksIn60Min 回傳60分K OHLC\
 \
 **其他**\
-dbo.sp_RestartSKOrder 重啟下單程式\
 dbo.sp_GetNotifyOrders Line reply下單通知\
 dbo.sp_ChkLatest_KLine 每日開盤檢查是否日K, 分K都是最新的\
 dbo.ChkTick 確保Tick都是最新的\
