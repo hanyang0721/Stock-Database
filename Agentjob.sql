@@ -1,11 +1,11 @@
 USE [msdb]
 GO
 
-/****** Object:  Job [[Self] Conversion, Backup, Clean Ticks]    Script Date: 2/13/2020 20:15:06 ******/
+/****** Object:  Job [[Self] Conversion, Backup, Clean Ticks]    Script Date: 7/10/2020 10:54:41 ******/
 BEGIN TRANSACTION
 DECLARE @ReturnCode INT
 SELECT @ReturnCode = 0
-/****** Object:  JobCategory [[Uncategorized (Local)]]    Script Date: 2/13/2020 20:15:06 ******/
+/****** Object:  JobCategory [[Uncategorized (Local)]]    Script Date: 7/10/2020 10:54:41 ******/
 IF NOT EXISTS (SELECT name FROM msdb.dbo.syscategories WHERE name=N'[Uncategorized (Local)]' AND category_class=1)
 BEGIN
 EXEC @ReturnCode = msdb.dbo.sp_add_category @class=N'JOB', @type=N'LOCAL', @name=N'[Uncategorized (Local)]'
@@ -25,7 +25,7 @@ EXEC @ReturnCode =  msdb.dbo.sp_add_job @job_name=N'[Self] Conversion, Backup, C
 		@category_name=N'[Uncategorized (Local)]', 
 		@owner_login_name=N'ALPHASTATION\HY', @job_id = @jobId OUTPUT
 IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
-/****** Object:  Step [Conversion & Backup]    Script Date: 2/13/2020 20:15:06 ******/
+/****** Object:  Step [Conversion & Backup]    Script Date: 7/10/2020 10:54:41 ******/
 EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'Conversion & Backup', 
 		@step_id=1, 
 		@cmdexec_success_code=0, 
@@ -36,18 +36,26 @@ EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'Conversi
 		@retry_attempts=0, 
 		@retry_interval=0, 
 		@os_run_priority=0, @subsystem=N'TSQL', 
-		@command=N'IF FORMAT(GETDATE(),''HH:mm'') BETWEEN ''13:45'' AND ''15:00''
+		@command=N'--Functioncode 0 convert to minute
+--Functioncode 1 convert to daily
+--Functioncode 2 backup ticks and clean up tick table
+--Functioncode 3 find if any 13:46 and 05:01 tick exists
+IF FORMAT(GETDATE(),''HH:mm'') BETWEEN ''13:45'' AND ''14:59''
 BEGIN
-	EXEC dbo.sp_TicksConversion @session=0, @functioncode=1 
 	EXEC dbo.sp_TicksConversion @session=0, @functioncode=0 
-	EXEC dbo.sp_TicksConversion @functioncode=2
+	EXEC dbo.sp_TicksConversion @session=0, @functioncode=1 
+	EXEC dbo.sp_TicksConversion @session=0, @functioncode=2
+	EXEC dbo.sp_TicksConversion @session=0, @functioncode=3
 END
 ELSE
 BEGIN
 	EXEC dbo.sp_TicksConversion @session=1, @functioncode=0 
-	--no need for now EXEC dbo.sp_TicksConversion @session=1, @functioncode=1 
-	EXEC dbo.sp_TicksConversion @functioncode=2
-END', 
+	EXEC dbo.sp_TicksConversion @session=1, @functioncode=1 
+	EXEC dbo.sp_TicksConversion @session=1, @functioncode=2
+	EXEC dbo.sp_TicksConversion @session=1, @functioncode=3
+END
+
+', 
 		@database_name=N'Stock', 
 		@flags=0
 IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
